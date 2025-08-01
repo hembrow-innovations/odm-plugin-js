@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+// Add this shebang at the top of your compiled JS file
+// or create a wrapper script that calls your compiled plugin
+
+const { MyCustomPlugin } = require("./example-plugin"); // path to my plugin
+const { PluginMain } = require("../dist/plugin-system"); // path to library
+
+const plugin = new MyCustomPlugin();
+const main = new PluginMain(plugin);
+
+main.start().catch((error) => {
+  console.error("Failed to start plugin:", error);
+  process.exit(1);
+});
